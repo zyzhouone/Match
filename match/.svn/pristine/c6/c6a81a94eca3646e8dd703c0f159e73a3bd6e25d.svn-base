@@ -1,0 +1,189 @@
+﻿@using Utls;
+@using Model;
+@using Web;
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model PagedList<tblteamsVew>
+<style>
+    .select.m-wrap.small1 {
+        width: 250px !important;
+    }
+</style>
+<div class="row-fluid">
+    <div class="span2">
+        <a class="btn blue" id="btnDown" href="javascript:;">
+            <i class="icon-plus icon-white">
+            </i>发放路线
+        </a> 
+    </div>
+        <div class="span10" style="margin-left:0px;">
+            @using (Html.BeginForm(null, null, null, FormMethod.Get, new { id = "search" }))
+            {
+                <div class="dataTables_filter">
+                    <label>
+                        <button type="submit" class="btn">
+                            查询 <i class="icon-search"></i>
+                        </button>
+                    </label>
+                    <label>
+                        <span>
+                            发放状态
+                        </span>
+                        <select id="dstatus" name="dstatus" class="m-wrap small">
+                            <option value="" selected="selected">--</option>
+                            <option value="1">未发放</option>
+                            <option value="2">已发放</option>
+                            <option value="3">已完成比赛</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>队伍编号：</span>
+                        @Html.TextBox("teamno", null, new { @class = "m-wrap small" })
+                    </label>
+                    <label>
+                        <span>
+                            队伍名
+                        </span>
+                        @Html.TextBox("teamname", null, new { @class = "m-wrap small" })
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+@*
+    <div class="alert">
+        <button class="close" data-dismiss="alert"></button>
+        <strong>用户权限相关：</strong>
+        请编辑其所属角色的权限，用户的权限是其所有角色所拥有的权限汇总！
+    </div>*@
+@using (Html.BeginForm("Delete", "Team", FormMethod.Post, new { id = "mainForm" }))
+{
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th style="width: 8px;">
+                    <input type="checkbox" id="checkall" class="group-checkable" />
+                </th>
+                <th>
+                    赛事名称
+                </th>
+                <th>
+                    队伍编号
+                </th>
+                <th>
+                    队伍名称
+                </th>
+                <th>
+                    创建人电话
+                </th>
+                <th>
+                    线路类型
+                </th>
+                <th>
+                    分配线路
+                </th>
+                <th>
+                    状态
+                </th>
+                <th>
+                    发放状态
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbMatch">
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" class="checkboxes" name='ids' value='@m.teamid' />
+                    </td>
+                    <td>
+                        @m.matchname
+                    </td>
+                    <td>
+                        @m.Teamno
+                    </td>
+                    <td>
+                        <a class=" mini purple thickbox" href="@Url.Action("TeamUsers", new { matchid = m.match_id,teamid = m.teamid })?TB_iframe=true&height=520&width=500">
+                            @m.Teamname
+                        </a>
+                    </td>
+                    <td>
+                        @m.Moblie
+                    </td>
+                    <td>
+                        @m.Linename
+                    </td>
+                    <td>
+                        @m.Linesname
+                    </td>
+                    <td>
+                        @foreach (var item in ViewData["Status"] as List<SelectListItem>)
+                        {
+                            if (item.Value == m.Status.ToString())
+                            {
+                                @item.Text
+                            }
+                        }
+                    </td>
+                    <td>
+                        @switch (m.Eventid.Value)
+                        {
+                            case 1:
+                                <span>未发放</span>
+                                break;
+                            case 2:
+                            <span>已发放</span>
+                                break;
+                            case 3:
+                            <span>已完成比赛</span>
+                                break;
+                            default:
+                            <span>-</span>
+                                break;
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+<div class="dataTables_paginate paging_bootstrap pagination">
+    @Html.Pager(Model, new PagerOptions() { ShowTotalItemCount = true })
+</div>
+<script type="text/javascript" src="@Url.Content("~/scripts/js/selector/jquery-1.10.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnDown").click(function () {
+            if ($("input:checkbox[name='ids']:checked").length < 1) {
+                alert("请至少选择一个队伍信息");
+                return;
+            }
+
+            var ck = true;
+
+            $("#tbMatch").find("tr").each(function () {
+                var tdArr = $(this).children();
+                var cbx = tdArr.eq(0).find("input").attr('checked');
+                var sts = tdArr.eq(8).find("span").text();
+                //alert(sts);
+                //alert(cbx);
+                if (cbx && sts != "未发放") {
+                    ck = false;
+                }
+            });
+
+            if (!ck) {
+                alert("请选择[未发放]状态的队伍");
+                return;
+            }
+
+            var message = "你确定要发放勾选的队伍吗?";
+            if (confirm(message))
+                $("#mainForm").submit();
+        });
+    });
+</script>

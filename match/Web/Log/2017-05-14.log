@@ -1,0 +1,139 @@
+[2017-05-14 22:08:20,415][13][ERROR][System.Web.Mvc.ExceptionContext:77] - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Areas_main_Views_Match_ScoreDetail_cshtml.Execute() 位置 d:\tao.li\02_src\match\Web\Areas\Main\Views\Match\ScoreDetail.cshtml:行号 105
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+[2017-05-14 22:12:10,192][8][ERROR][System.Web.Mvc.ExceptionContext:77] - System.Data.Entity.Core.ProviderIncompatibleException: An error occurred while getting provider information from the database. This can be caused by Entity Framework using an incorrect connection string. Check the inner exceptions for details and ensure that the connection string is correct. ---> System.Data.Entity.Core.ProviderIncompatibleException: The provider did not return a ProviderManifestToken string. ---> MySql.Data.MySqlClient.MySqlException: Unable to connect to any of the specified MySQL hosts. ---> System.Net.Sockets.SocketException: 请求的名称有效，但是找不到请求的类型的数据。
+   在 System.Net.Dns.GetAddrInfo(String name)
+   在 System.Net.Dns.InternalGetHostByName(String hostName, Boolean includeIPv6)
+   在 System.Net.Dns.GetHostEntry(String hostNameOrAddress)
+   在 MySql.Data.Common.MyNetworkStream.GetHostEntry(String hostname)
+   在 MySql.Data.Common.MyNetworkStream.CreateStream(MySqlConnectionStringBuilder settings, Boolean unix)
+   在 MySql.Data.Common.StreamCreator.GetTcpStream(MySqlConnectionStringBuilder settings)
+   在 MySql.Data.Common.StreamCreator.GetStream(MySqlConnectionStringBuilder settings)
+   在 MySql.Data.MySqlClient.NativeDriver.Open()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 MySql.Data.MySqlClient.NativeDriver.Open()
+   在 MySql.Data.MySqlClient.Driver.Open()
+   在 MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   在 MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   在 MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   在 MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   在 MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   在 MySql.Data.MySqlClient.MySqlConnection.Open()
+   在 MySql.Data.MySqlClient.MySqlProviderServices.GetDbProviderManifestToken(DbConnection connection)
+   在 System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifestToken(DbConnection connection)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.Common.DbProviderServices.GetProviderManifestToken(DbConnection connection)
+   在 System.Data.Entity.Utilities.DbProviderServicesExtensions.GetProviderManifestTokenChecked(DbProviderServices providerServices, DbConnection connection)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Utilities.DbProviderServicesExtensions.GetProviderManifestTokenChecked(DbProviderServices providerServices, DbConnection connection)
+   在 System.Data.Entity.Infrastructure.DefaultManifestTokenResolver.<>c__DisplayClass1.<ResolveManifestToken>b__0(Tuple`3 k)
+   在 System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   在 System.Data.Entity.Infrastructure.DefaultManifestTokenResolver.ResolveManifestToken(DbConnection connection)
+   在 System.Data.Entity.Utilities.DbConnectionExtensions.GetProviderInfo(DbConnection connection, DbProviderManifest& providerManifest)
+   在 System.Data.Entity.DbModelBuilder.Build(DbConnection providerConnection)
+   在 System.Data.Entity.Internal.LazyInternalContext.CreateModel(LazyInternalContext internalContext)
+   在 System.Data.Entity.Internal.RetryLazy`2.GetValue(TInput input)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   在 System.Data.Entity.Internal.InternalContext.Initialize()
+   在 System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   在 System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   在 System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   在 DAL.BFdbContext.FindAll[T](Expression`1 conditions) 位置 d:\tao.li\02_src\match\DAL\BFdbContext.cs:行号 237
+   在 BLL.AuthBll.Login(String name, String pwd) 位置 d:\tao.li\02_src\match\BLL\AuthBll.cs:行号 22
+   在 Web.Areas.Auth.Controllers.LoginController.Login(String username, String password) 位置 d:\tao.li\02_src\match\Web\Areas\Auth\Controllers\LoginController.cs:行号 43
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+[2017-05-14 22:12:54,879][7][ERROR][System.Web.Mvc.ExceptionContext:77] - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Areas_main_Views_Match_ScoreDetail_cshtml.Execute() 位置 d:\tao.li\02_src\match\Web\Areas\Main\Views\Match\ScoreDetail.cshtml:行号 105
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+[2017-05-14 22:19:17,689][6][ERROR][System.Web.Mvc.ExceptionContext:77] - System.InvalidOperationException: 未找到视图“PScoreDetail”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/Areas/main/Views/Match/PScoreDetail.aspx
+~/Areas/main/Views/Match/PScoreDetail.ascx
+~/Areas/main/Views/Shared/PScoreDetail.aspx
+~/Areas/main/Views/Shared/PScoreDetail.ascx
+~/Views/Match/PScoreDetail.aspx
+~/Views/Match/PScoreDetail.ascx
+~/Views/Shared/PScoreDetail.aspx
+~/Views/Shared/PScoreDetail.ascx
+~/Areas/main/Views/Match/PScoreDetail.cshtml
+~/Areas/main/Views/Match/PScoreDetail.vbhtml
+~/Areas/main/Views/Shared/PScoreDetail.cshtml
+~/Areas/main/Views/Shared/PScoreDetail.vbhtml
+~/Views/Match/PScoreDetail.cshtml
+~/Views/Match/PScoreDetail.vbhtml
+~/Views/Shared/PScoreDetail.cshtml
+~/Views/Shared/PScoreDetail.vbhtml
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+[2017-05-14 22:21:24,221][10][ERROR][System.Web.Mvc.ExceptionContext:77] - System.InvalidOperationException: 未找到视图“PScoreDetail”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/Areas/main/Views/Match/PScoreDetail.aspx
+~/Areas/main/Views/Match/PScoreDetail.ascx
+~/Areas/main/Views/Shared/PScoreDetail.aspx
+~/Areas/main/Views/Shared/PScoreDetail.ascx
+~/Views/Match/PScoreDetail.aspx
+~/Views/Match/PScoreDetail.ascx
+~/Views/Shared/PScoreDetail.aspx
+~/Views/Shared/PScoreDetail.ascx
+~/Areas/main/Views/Match/PScoreDetail.cshtml
+~/Areas/main/Views/Match/PScoreDetail.vbhtml
+~/Areas/main/Views/Shared/PScoreDetail.cshtml
+~/Areas/main/Views/Shared/PScoreDetail.vbhtml
+~/Views/Match/PScoreDetail.cshtml
+~/Views/Match/PScoreDetail.vbhtml
+~/Views/Shared/PScoreDetail.cshtml
+~/Views/Shared/PScoreDetail.vbhtml
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

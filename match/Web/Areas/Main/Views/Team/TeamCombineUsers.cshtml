@@ -1,0 +1,111 @@
+﻿@using Model;
+@using BLL;
+@using Web;
+
+@model List<tblmatchusers>
+
+@{
+    ViewBag.Title = "队伍信息";
+    Layout = "~/Views/Shared/_Layout.View.cshtml";
+}
+
+@section MainContent{
+    <div class="portlet-body form-horizontal form-bordered form-row-stripped">
+        <div class="row-fluid">
+            <div class="control-group">
+                <label class="control-label"><span class="required">*</span>队伍名称：</label>
+                <div class="controls">
+                    <label class="m-wrap large">@Model[0].Teamname</label>
+                </div>
+            </div>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="control-group">
+
+                        <div class="control-group">
+                            <label class="control-label">队员：</label>
+                            <div class="controls">
+                                <table>
+                                    <tr>                                       
+                                        <td style="width:160px;">
+                                            <label>
+                                                @Model[i].Nickname.PadRight(8, ' ')
+                                                @if (Model[i].Leader == 1)
+                                                {
+                                                    @:<img src="@Url.Content("/Content/Images/leader.jpg")" style="width:30px;height:30px;" />
+                     }
+                                            </label>
+                                        </td>
+                                        <td style="width:50px;">@Model[i].Age </td>
+                                        <td style="width:100px;">@Model[i].Mobile </td>
+                                        <td style="width:80px;">
+                                            @switch (Model[i].isdown)
+                                            {
+                                                case "0":
+                                                    <span>未推送</span>
+                                                    break;
+                                                case "1":
+                                                <span>已推送</span>
+                                                    break;
+                                                case "2":
+                                                <span>已下载</span>
+                                                    break;
+                                                case "3":
+                                                <span>已清理</span>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </td>
+                                        <td style="width:300px;">
+                                            <a class="btn mini purple thickbox" title='编辑' href="@Url.Action("EditPlayer", new { matchuid = Model[i].Matchuserid })&TB_iframe=true&height=300&width=500">
+                                                <i class="icon-edit"></i>编辑
+                                            </a>
+                                            @if (Model[i].Leader != 1)
+                                            {
+                                                <a class="btn mini purple thickbox" title='替换队员' href="@Url.Action("setplayer", new { matchuid = Model[i].Matchuserid })&TB_iframe=true&height=200&width=500">
+                                                    <i class="icon-edit"></i>替换队员
+                                                </a>
+                                                <a class="btn mini purple" title='设置队长' href="#" onclick="releader('@Model[i].Matchuserid')">
+                                                    <i class="icon-ok"></i>设置队长
+                                                </a>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            </div>
+                            }
+
+                        </div>
+                    </div>
+                }
+
+<script type="text/javascript">
+
+    function releader(id) {
+
+        if (!confirm("确认要设为队长?"))
+            return;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/team/setteamer?matchuid=" + id,
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code != 0) {
+                    alert(data.msg);
+                }
+                else {
+                    window.location.reload();
+                }
+            }
+        });
+    }
+
+
+</script>

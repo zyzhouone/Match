@@ -1,0 +1,8 @@
+D:\tao.li\02_src\match\WinCreateEntity\bin\Debug\WinCreateEntity.exe.config
+D:\tao.li\02_src\match\WinCreateEntity\bin\Debug\WinCreateEntity.exe
+D:\tao.li\02_src\match\WinCreateEntity\bin\Debug\WinCreateEntity.pdb
+D:\tao.li\02_src\match\WinCreateEntity\obj\x86\Debug\WinCreateEntity.Form1.resources
+D:\tao.li\02_src\match\WinCreateEntity\obj\x86\Debug\WinCreateEntity.Properties.Resources.resources
+D:\tao.li\02_src\match\WinCreateEntity\obj\x86\Debug\WinCreateEntity.csproj.GenerateResource.Cache
+D:\tao.li\02_src\match\WinCreateEntity\obj\x86\Debug\WinCreateEntity.exe
+D:\tao.li\02_src\match\WinCreateEntity\obj\x86\Debug\WinCreateEntity.pdb

@@ -1,0 +1,70 @@
+﻿@using Model;
+@using BLL;
+@using Web;
+
+@model List<tblpointsView>
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section PageSpecificJavascriptIncludes{
+}
+
+<script type="text/javascript" src="@Url.Content("~/scripts/js/selector/jquery-1.10.js")"></script>
+<script src="@Url.Content("/assets/js/jquery.qrcode.min.js")" type="text/javascript"></script>
+ <div class="portlet-body form-horizontal form-bordered form-row-stripped" id="showDiv">
+     
+</div>
+
+<script>
+    $(document).ready(function () {
+        ShowPoints();
+    });
+
+    function ShowPoints()
+    {
+        var linesid = '@ViewBag.linesid';
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: encodeURI("../GetPointsList?linesid=" + linesid),
+            data: {},
+            dataType: "json",
+            success: function (data) {
+ 
+                if (data != "") {
+                    var html = "";
+                    $("#showDiv").empty();
+                    //html += "<div class='row-fluid' style='margin-bottom:10px;background-color:gray;'>";
+                    //html += "<div class='span2'>二维码</div>";
+                    //html += "<div class='span1'>点标编号</div>";
+                    //html += "<div class='span2'>点标名称</div>";
+                    //html += "<div class='span1'>点标类型</div>";
+                    //html += "<div class='span6'>任务书</div>";
+                    //html += "</div>";
+                    //$("#showDiv").append(html);
+                    $.each(data, function (index, content) {
+                            html = "";
+                            html += "<div class='row-fluid' style='margin-bottom:10px;'>";
+                            html += "<div class='span2'><div id='" + content.Pointid + "'></div></div>";
+                            html += "<div class='span1'>" + content.Pointno + "</div>";
+                            html += "<div class='span2'>" + content.Pointname + "</div>";
+                            html += "<div class='span1'>" + content.pointtypename + "</div>";
+                            html += "<div class='span6'>" + content.Pointtask + "</div>";
+                            html += "</div>";
+                            $("#showDiv").append(html);
+                            $("#" + content.Pointid + "").qrcode({
+                                width: 100, //宽度
+                                height: 100, //高度
+                                text: content.Pointid
+                            });
+                    });
+                    
+                }
+            }
+
+        });
+    }
+</script>

@@ -1,0 +1,82 @@
+[2018-12-12 17:54:19,755][7][ERROR][System.Web.Mvc.ExceptionContext:77] - System.IO.FileNotFoundException: 未能加载文件或程序集“DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null”
+   在 BLL.AuthBll.Login(String name, String pwd)
+   在 Web.Areas.Auth.Controllers.LoginController.Login(String username, String password) 位置 e:\ZGZB\match\Web\Areas\Auth\Controllers\LoginController.cs:行号 43
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+=== 预绑定状态信息 ===
+日志: DisplayName = DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null
+ (Fully-specified)
+日志: Appbase = file:///E:/ZGZB/match/Web/
+日志: 初始 PrivatePath = E:\ZGZB\match\Web\bin
+调用程序集: BLL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: E:\ZGZB\match\Web\web.config
+日志: 使用主机配置文件: C:\Users\Thinkpad\Documents\IISExpress\config\aspnet.config
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 此时没有为引用应用策略(私有、自定义、分部或基于位置的程序集绑定)。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL.DLL。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL/DAL.DLL。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL.DLL。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL/DAL.DLL。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL.EXE。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL/DAL.EXE。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL.EXE。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL/DAL.EXE。
+
+[2018-12-12 17:56:04,030][9][ERROR][System.Web.Mvc.ExceptionContext:77] - System.IO.FileNotFoundException: 未能加载文件或程序集“DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null”或它的某一个依赖项。系统找不到指定的文件。
+文件名:“DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null”
+   在 BLL.AuthBll.Login(String name, String pwd)
+   在 Web.Areas.Auth.Controllers.LoginController.Login(String username, String password) 位置 e:\ZGZB\match\Web\Areas\Auth\Controllers\LoginController.cs:行号 43
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+=== 预绑定状态信息 ===
+日志: DisplayName = DAL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null
+ (Fully-specified)
+日志: Appbase = file:///E:/ZGZB/match/Web/
+日志: 初始 PrivatePath = E:\ZGZB\match\Web\bin
+调用程序集: BLL, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null。
+===
+日志: 此绑定从 default 加载上下文开始。
+日志: 正在使用应用程序配置文件: E:\ZGZB\match\Web\web.config
+日志: 使用主机配置文件: C:\Users\Thinkpad\Documents\IISExpress\config\aspnet.config
+日志: 使用 C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config 的计算机配置文件。
+日志: 此时没有为引用应用策略(私有、自定义、分部或基于位置的程序集绑定)。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL.DLL。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL/DAL.DLL。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL.DLL。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL/DAL.DLL。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL.EXE。
+日志: 尝试下载新的 URL file:///C:/Windows/Microsoft.NET/Framework/v4.0.30319/Temporary ASP.NET Files/root/0078fadf/a7eacb8/DAL/DAL.EXE。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL.EXE。
+日志: 尝试下载新的 URL file:///E:/ZGZB/match/Web/bin/DAL/DAL.EXE。
+

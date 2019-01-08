@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "setplayer";
+    Layout = "~/Views/Shared/_Layout.Edit.cshtml";
+}
+
+@section MainContent{
+
+    <input id="mid" name="mid" type="hidden" value="@ViewBag.mid" />
+
+    <div class="portlet-body form-horizontal form-bordered form-row-stripped">
+        <div class="row-fluid">
+            <div class="control-group">
+                <label class="control-label"><span class="required">*</span>替换手机：</label>
+                <div class="controls">
+                    @Html.TextBox("mobile", "", new { @class = "m-wrap large" })
+                    <a onclick="GetUserName()" class="btn mini purple" style=" height:25px; line-height:25px;">确定</a>
+                </div>
+            </div>
+            <div class="control-group" style="display:none" id="divInfo">
+                <div class="control-group">
+                    <label class="control-label">队员信息：</label>
+                    <div class="controls">
+                        <p>姓名：<span id="txtname"></span></p><br />
+                        <p>性别：<span id="txtsexy"></span></p><br />
+                        <p>年龄：<span id="txtage"></span></p><br />
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="color:red;">@ViewBag.err</div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    function GetUserName() {
+        $.ajax({
+            type: "Get",
+            url: encodeURI("GetUserByMobile"),
+            data: { "mobile": $("#mobile").val() },
+            success: function (data) {
+                
+                var info = data.split(";");
+                $("#txtname").text(info[0]);
+                $("#txtsexy").text(info[1]);
+                $("#txtage").text(info[2]);
+                $("#divInfo").show()
+            }
+        });
+    }
+
+    function CloseUserInfo() {
+        $("#divInfo").hide()
+    }
+</script>
+
