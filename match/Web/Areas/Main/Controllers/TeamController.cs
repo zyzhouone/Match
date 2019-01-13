@@ -104,6 +104,7 @@ namespace Web.Areas.Main.Controllers
         /// <summary>
         /// zzy 218-12-30
         /// 队伍组合
+        /// 默认不查询
         /// </summary>
         /// <param name="matchid"></param>
         /// <param name="teamid"></param>
