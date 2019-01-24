@@ -23,7 +23,7 @@ namespace Web.Areas.Main.Controllers
     public class TeamController : BaseController
     {
         //
-        // GET: /Main/Team/
+        // GET: /Main/Team/  pangs d  
 
         public ActionResult Index(string optMatch, string optLine, string optLines, string teamno, string teamname, int? pageIndex)
         {
