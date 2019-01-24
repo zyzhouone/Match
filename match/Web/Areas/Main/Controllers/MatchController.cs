@@ -184,10 +184,11 @@ namespace Web.Areas.Main.Controllers
         {
             var bll = new MatchBll();
             var model = new tbllines();
+            model.Paycount = 0;
             model.Lines_id = Guid.NewGuid().ToString();
             model.Match_id = fc["optMatch"].ToString();
             model.Line_id = fc["optLine"].ToString();
-            model.Line_no = fc["Lineno"].ToString();
+            model.Line_no = fc["Line_no"].ToString();
             model.Linename = fc["Linename"].ToString().Trim();
             model.Content = fc["Content"].ToString().Trim();
             if (fc["Playercount"] != "")
