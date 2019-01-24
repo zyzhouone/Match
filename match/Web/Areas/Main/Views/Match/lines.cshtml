@@ -80,6 +80,9 @@
                 <th>
                     队伍上限
                 </th>
+                <th>
+                    状态
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -112,6 +115,12 @@
                     <td>
                         @m.Pointscount
                     </td>
+                   <td>
+                       @if (m.Status == 2)
+                       {
+                           <span>禁用</span>
+                       }
+                   </td>
                     <td>
                         <a class="btn mini purple thickbox" title='编辑线路资料' href="@Url.Action("LinesEdit", new { id = m.lines_id })?TB_iframe=true&height=520&width=500">
                             <i class="icon-edit"></i>编辑
