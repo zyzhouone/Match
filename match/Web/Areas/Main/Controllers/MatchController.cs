@@ -1350,6 +1350,12 @@ namespace Web.Areas.Main.Controllers
             else
             {
                 model.record = record;
+                //zzy 2019-01-25 标识类型为终点 eventid修改为3
+                tblpointsView points = new MatchBll().GetPointById(record);
+                if(points.Pointtype==2)
+                {
+                    model.Eventid = 3;
+                }
             }
             try
             {
