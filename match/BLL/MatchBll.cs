@@ -1059,7 +1059,7 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT mu.nickname,tm.teamname,p.pointname,t.pointtime,t.typ,t.status,t.createtime FROM dx.tbl_match_record t left join tbl_match_users mu on mu.matchuserid = t.matchuserid left join tbl_teams tm on tm.teamid = t.teamid left join tbl_points p on p.pointid = t.pointid  where 1=1");
+                sql.Append("SELECT mu.nickname,tm.teamname,p.pointname,t.pointtime,t.typ,t.status,t.createtime FROM tbl_match_record t left join tbl_match_users mu on mu.matchuserid = t.matchuserid left join tbl_teams tm on tm.teamid = t.teamid left join tbl_points p on p.pointid = t.pointid  where 1=1");
 
                 if (!string.IsNullOrEmpty(teamid))
                     sql.AppendFormat(" AND t.teamid ='{0}'", teamid);
@@ -1079,7 +1079,7 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM dx.tbl_result t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
+                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM tbl_result t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(teamname))
                     sql.AppendFormat(" AND m.teamname  like '%{0}%'", teamname);
@@ -1104,7 +1104,7 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM dx.tbl_resultdetail t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
+                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM tbl_resultdetail t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(teamname))
                     sql.AppendFormat(" AND m.teamname  like '%{0}%'", teamname);
@@ -1133,7 +1133,7 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM dx.tbl_result t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
+                sql.Append("SELECT t.*,m.teamname,s.match_name,tb.line_no FROM tbl_result t inner join tbl_teams m on m.teamid = t.teamid inner join tbl_match s on s.match_id = t.match_id inner join tbl_lines tb on m.linesid=tb.lines_id WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(teamname))
                     sql.AppendFormat(" AND m.teamname  like '%{0}%'", teamname);
