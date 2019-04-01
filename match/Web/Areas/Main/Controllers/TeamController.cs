@@ -116,10 +116,10 @@ namespace Web.Areas.Main.Controllers
             tblmatch Match = new MatchBll().GetMatchById(matchid);
             try
             {
-                if (!string.IsNullOrEmpty(optMatch))//默认不查询
-                {
+                //if (!string.IsNullOrEmpty(optMatch))//默认不查询
+                //{
                     teams = new TeamBll().GetOnePeoperTeams(optType, matchid, optLines, optAge, teamname);
-                }
+                //}
                 List<SelectListItem> Status = new MemberBll().GetDict(5);
                 ViewData["Status"] = Status;
 

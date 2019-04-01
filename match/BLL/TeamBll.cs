@@ -132,15 +132,15 @@ namespace BLL
                 if (!string.IsNullOrEmpty(optAge) && opttype == "未组合")
                 {
                     if (optAge == "00后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -2019) and age<=(YEAR(CURDATE())-2000) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -2019) and age<=(YEAR(CURDATE())-2000) ");
                     else if(optAge=="90后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1999) and age<=(YEAR(CURDATE())-1990) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1999) and age<=(YEAR(CURDATE())-1990) ");
                     else if (optAge == "80后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1989) and age<=(YEAR(CURDATE())-1980) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1989) and age<=(YEAR(CURDATE())-1980) ");
                     else if (optAge == "70后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1979) and age<=(YEAR(CURDATE())-1970) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1979) and age<=(YEAR(CURDATE())-1970) ");
                     else if (optAge == "60后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1969) and age<=(YEAR(CURDATE())-1940) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1969) and age<=(YEAR(CURDATE())-1940) ");
 
                 }
 
@@ -215,15 +215,15 @@ namespace BLL
                 if (!string.IsNullOrEmpty(optAge) && opttype == "未组合")
                 {
                     if (optAge == "00后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -2019) and age<=(YEAR(CURDATE())-2000) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -2019) and age<=(YEAR(CURDATE())-2000) ");
                     else if (optAge == "90后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1999) and age<=(YEAR(CURDATE())-1990) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1999) and age<=(YEAR(CURDATE())-1990) ");
                     else if (optAge == "80后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1989) and age<=(YEAR(CURDATE())-1980) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1989) and age<=(YEAR(CURDATE())-1980) ");
                     else if (optAge == "70后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1979) and age<=(YEAR(CURDATE())-1970) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1979) and age<=(YEAR(CURDATE())-1970) ");
                     else if (optAge == "60后")
-                        sql.Append(" and age >(YEAR(CURDATE()) -1969) and age<=(YEAR(CURDATE())-1940) ");
+                        sql.Append(" and age >=(YEAR(CURDATE()) -1969) and age<=(YEAR(CURDATE())-1940) ");
 
                 }
                 sql.Append(" order by value ");
