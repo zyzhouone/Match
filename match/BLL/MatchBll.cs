@@ -843,7 +843,18 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT ls.line_no,ls.linename as linesname,u.name as nickname,t.*,u.mobile as Moblie,l.name as Linename,m.match_name as matchname FROM tbl_teams t  left join tbl_line l on l.lineid = t.lineid left join tbl_users u on u.userid = t.userid  left join tbl_match m on m.match_id = t.match_id  left join tbl_lines ls on ls.lines_id = t.linesid    where t.status = 0 ");
+                //edit by pangsd 20190511
+                //sql.Append("SELECT ls.line_no,ls.linename as linesname,u.name as nickname,t.*,u.mobile as Moblie,l.name as Linename,m.match_name as matchname FROM tbl_teams t  left join tbl_line l on l.lineid = t.lineid left join tbl_users u on u.userid = t.userid  left join tbl_match m on m.match_id = t.match_id  left join tbl_lines ls on ls.lines_id = t.linesid    where t.status = 0 ");
+                sql.Append(@"SELECT ls.line_no,ls.linename as linesname,u.name as nickname,
+                                    t.teamname,case when isNULL(tc.team_combine_id)=1 then t.company else '【合并组队】' end as company,t.Teamno,
+                                    u.mobile as Moblie,l.name as Linename,m.match_name as matchname 
+                              FROM tbl_teams t  
+                                left join tbl_line l on l.lineid = t.lineid 
+                                left join tbl_users u on u.userid = t.userid  
+                                left join tbl_match m on m.match_id = t.match_id  
+                                left join tbl_lines ls on ls.lines_id = t.linesid  
+                                left join tbl_teams_combine tc on tc.team_id=t.teamid  
+                              where t.status = 0 ");
 
                 if (!string.IsNullOrEmpty(matchid))
                     sql.AppendFormat(" AND t.match_id  =  '{0}'", matchid);
@@ -945,12 +956,25 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("select case when u.leader= 1 then '队长' else '' end as user_no,u.nickname,u.age, case when u.sexy = 1 then '男' else '女' end as sex, u.cardno,u.mobile,'是' as isgood,u.mono as memo,l.line_no,l.linename,t.teamno,t.teamname,t.company,t.teamid from tbl_teams t left join tbl_lines l on l.lines_id = t.linesid and l.match_id = t.match_id right join tbl_match_users u on u.teamid = t.teamid where  t.status = 0 and u.status = '1'");
-
+                sql.Append(@"select * from (
+                               select case when u.leader= 1 then '队长' else '' end as user_no,u.nickname,u.age, case when u.sexy = 1 then '男' else '女' end as sex, 
+                                    u.cardno,u.mobile,'是' as isgood,u.mono as memo,l.line_no,l.linename,t.teamno,t.teamname,t.company,t.teamid 
+                                from tbl_teams t left join tbl_lines l on l.lines_id = t.linesid and l.match_id = t.match_id 
+                                right join tbl_match_users u on u.teamid = t.teamid where  t.status = 0 and u.status = '1' ");
                 if (!string.IsNullOrEmpty(matchid))
                     sql.AppendFormat(" AND t.match_id = '{0}'", matchid);
+                
+                sql.Append(@"union 		 
+                                select '' as user_no,  e1.info1 as nickname  ,'0' as age,case when e1.sexy = 1 then '男' else '女' end as sex,e1.info2  as cardno  ,'' as mobile,'是' as isgood
+                                    ,'' AS memo,  s1.line_no,  s1.linename,  t1.teamno,  t1.teamname,  t1.company,  t1.teamid
+                                from tbl_match_extra e1,tbl_teams t1,tbl_lines  s1,tbl_line l1 					
+                                    where e1.teamid=t1.teamid and t1.linesid= s1.lines_id and s1.line_id=l1.lineid 
+                                    and t1.status='0' and playercount=2");
+                if (!string.IsNullOrEmpty(matchid))
+                    sql.AppendFormat(" AND t1.match_id = '{0}'", matchid);
+                            
 
-                sql.Append(" order by t.teamno asc ,user_no desc ");
+                sql.Append(") a order by teamno asc,user_no desc ");
 
                 return db.SqlQuery<TeamUser>(sql.ToString()).ToList();
             }
