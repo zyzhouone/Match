@@ -1234,7 +1234,9 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("select b.teamname,b.teamno, u.nickname,u.mobile, '1' as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,DATE_FORMAT(a.settime,'%Y-%m-%d %H:%i:%s:%f') as mintime,timediff(a.settime,a.starttime) as total from tbl_result a ");
+                sql.Append(@"select b.teamname,b.teamno, u.nickname,u.mobile, '1' as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,
+                                DATE_FORMAT(a.settime,'%Y-%m-%d %H:%i:%s:%f') as mintime,timediff(a.settime,a.starttime) as total
+                                from tbl_result a ");
                  sql.Append("left join tbl_teams b on a.teamid=b.teamid  "); 
                  //sql.Append("left join tbl_points c on c.lineguid = b.linesid ");
                  //sql.Append("left join tbl_match_record d on d.teamid = a.teamid and d.status = '0' ");
@@ -1269,7 +1271,7 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("select a.linesid,b.linename as linesname,a.teamid,a.teamname,a.teamno from tbl_teams a ,tbl_lines b where a.linesid=b.lines_id and a.eventid=2 and record='0'  ");
+                sql.Append("select a.linesid,b.linename as linesname,a.teamid,a.teamname,a.teamno from tbl_teams a ,tbl_lines b where a.linesid=b.lines_id and a.eventid=2 and (record='0' or record is null)  ");
 
                 if (!string.IsNullOrEmpty(matchid))
                     sql.AppendFormat(" AND a.match_id = '{0}'", matchid);
