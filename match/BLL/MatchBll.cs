@@ -1267,14 +1267,15 @@ namespace BLL
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append(@"select *,
-(select count(1) + 1 from tbl_result a2
-left join tbl_teams b2 on a2.teamid=b2.teamid
-where b2.linesid = t.linesid
-and a2.timeline < t.timeline) as rank /*分数相同,名次并列*/
-from (
-select timeline,b.linesid,a.match_id,a.teamid,b.teamname,b.teamno, u.nickname,u.mobile, a.status as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,
-                                DATE_FORMAT(a.settime,'%Y-%m-%d %H:%i:%s:%f') as mintime,timediff(a.settime,a.starttime) as total
-                                from tbl_result a ");
+                                (select count(1) + 1 from tbl_result a2
+                                    left join tbl_teams b2 on a2.teamid=b2.teamid
+                                    where b2.linesid = t.linesid
+                                    and a2.timeline < t.timeline) as rank /*分数相同,名次并列*/
+                            from (
+                                select timeline,b.linesid,a.match_id,a.teamid,b.teamname,b.teamno, u.nickname,u.mobile, 
+                                    a.status as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,
+                                    DATE_FORMAT(a.settime,'%Y-%m-%d %H:%i:%s:%f') as mintime,timediff(a.settime,a.starttime) as total
+                                    from tbl_result a ");
                  sql.Append("left join tbl_teams b on a.teamid=b.teamid  "); 
                  //sql.Append("left join tbl_points c on c.lineguid = b.linesid ");
                  //sql.Append("left join tbl_match_record d on d.teamid = a.teamid and d.status = '0' ");
@@ -1293,9 +1294,10 @@ select timeline,b.linesid,a.match_id,a.teamid,b.teamname,b.teamno, u.nickname,u.
                 if (!string.IsNullOrEmpty(nickname))
                     sql.AppendFormat(" AND u.nickname  like '%{0}%'", nickname);
 
-                sql.Append(@" group by b.teamno,b.teamname 
-                                ) t");
-                return db.SqlQuery1<ranking, TimeSpan?>(sql.ToString(), pageindex, p => p.total);
+                sql.Append(@" group by b.teamno,b.teamname ) t 
+                            where linesid is not null");
+               // return db.SqlQuery1<ranking, TimeSpan?>(sql.ToString(), pageindex, p => p.total);
+                return db.SqlQuery1<ranking, int>(sql.ToString(), pageindex, p => p.rank );//(p.rank+p.teamno)
             }
         }
 
