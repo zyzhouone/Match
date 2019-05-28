@@ -15,6 +15,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using System.Drawing;
+using Web.Areas.Main.Models;
 
 namespace Web.Areas.Main.Controllers
 {
@@ -1521,6 +1522,36 @@ namespace Web.Areas.Main.Controllers
             }
 
             return this.RefreshParent();
+        }
+
+        [HttpPost]
+        public JsonResult EditResultStatus(string matchid, string teamid, string iStatus)
+        {
+            tblresult model = null;
+            JsonResult jr = new JsonResult();
+            ResponseModel response = new ResponseModel();
+            try
+            {
+                var bll = new MatchBll();
+
+                model = bll.GetScore(matchid, teamid);
+                if (model != null)
+                {
+                    model.status = iStatus;
+                    bll.EditResultStatus(model);
+                    response.iResult = 0;
+                    response.strMsg = "修改成功";
+                }
+
+            }
+            catch (ValidException ex)
+            {
+                response.iResult = -1;
+                response.strMsg = "修改失败";
+            }
+
+            jr.Data = response;
+            return jr;
         }
 
 

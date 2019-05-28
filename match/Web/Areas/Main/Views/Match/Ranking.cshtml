@@ -42,85 +42,107 @@
         <strong>用户权限相关：</strong>
         请编辑其所属角色的权限，用户的权限是其所有角色所拥有的权限汇总！
     </div>*@
-    <table class="table table-striped table-hover ">
-        <thead>
-            <tr>
-                <th>
-                    队伍编号
-                </th>
-                <th>
-                    队伍名称
-                </th>
-                @*<th>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>
+                队伍编号
+            </th>
+            <th>
+                名次
+            </th>
+            <th>
+                队伍名称
+            </th>
+            @*<th>
                     线路编号
                 </th>
                 <th>
                     线路名称
                 </th>*@
-                <th>
-                    姓名
-                </th>
-                <th>
-                    电话
-                </th>
-                <th>
-                    开始时间
-                </th>
-                <th>
-                    结束时间
-                </th>
-                <th>
-                    成绩
-                </th>
-                <th>
-                    状态
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var m in Model)
-            {
-                <tr>
-                    <td>
-                        @m.teamno
-                    </td>
-                    <td>
-                       @m.teamname
-                    </td>
-                    @*<td>
+            <th>
+                姓名
+            </th>
+            <th>
+                电话
+            </th>
+            <th>
+                开始时间
+            </th>
+            <th>
+                结束时间
+            </th>
+            <th>
+                成绩
+            </th>
+            <th>
+                状态
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>
+                    @m.teamno
+                </td>
+                <td>
+                    @m.rank
+                </td>
+                <td>
+                    @m.teamname
+                </td>
+                @*<td>
                        @m.line_no
                     </td>
                     <td>
                         @m.linename
                     </td>*@
-                    <td>
-                       @m.nickname
-                    </td>
-                    <td>
-                        @m.mobile
-                    </td>
-                    <td>
-                       @m.maxtime
-                    </td>
-                    <td>
-                        @m.mintime
-                    </td>
-                    <td>
-                        @m.total
-                    </td>
-                    <td>
-                        @if (m.valid == "0") 
-                        { 
-                            @:无效
-                        }
-                        else { 
-                            @:有效
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                <td>
+                    @m.nickname
+                </td>
+                <td>
+                    @m.mobile
+                </td>
+                <td>
+                    @m.maxtime
+                </td>
+                <td>
+                    @m.mintime
+                </td>
+                <td>
+                    @m.total
+                </td>
+                <td>
+                    @if (m.valid == "1")
+                    {
+                        <a href="#" onclick="changeStatus('@m.teamname','@m.match_id','@m.teamid',0)">无效</a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="changeStatus('@m.teamname','@m.match_id', '@m.teamid', 1)">有效</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div class="dataTables_paginate paging_bootstrap pagination">
     @Html.Pager(Model, new PagerOptions() { ShowTotalItemCount = true })
 </div>
+<script type="text/javascript">
+    function changeStatus(teamno,matchid, teamid, status)
+    {
+        if(confirm("确定要修改队伍【"+teamno+"】的状态吗？"))
+        $.ajax({
+            type: "Post",
+            url: "/Match/EditResultStatus",
+            data: { "matchid": matchid, "teamid": teamid, "iStatus": status },
+            success: function (data) {
+                alert(data.strMsg);
+                window.location.reload();
+            }
+        });
+    }
+</script>

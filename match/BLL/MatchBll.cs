@@ -475,6 +475,38 @@ namespace BLL
             return ret;
         }
 
+
+        /// <summary>
+        /// 更新成绩是否有效
+        /// </summary>
+        /// <param name="ent"></param>
+        /// <returns></returns>
+        public int EditResultStatus(tblresult ent)
+        {
+
+            using (var db = new BFdbContext())
+            {
+                int res = 0;
+
+                using (var tx = db.BeginTransaction())
+                {
+                    try
+                    {
+                        string sqlteam = string.Format("update tbl_result set status={0} where  match_id='{1}' and teamid='{2}'", ent.status, ent.match_id, ent.teamid); 
+                        db.ExecuteSqlCommand(sqlteam);
+
+                        tx.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tx.Rollback();
+                        throw ex;
+                    }
+                }
+
+                return res;
+            }
+        }
         /// <summary>
         /// 更新线路类型
         /// </summary>
@@ -1234,7 +1266,13 @@ namespace BLL
             using (var db = new BFdbContext())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append(@"select b.teamname,b.teamno, u.nickname,u.mobile, '1' as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,
+                sql.Append(@"select *,
+(select count(1) + 1 from tbl_result a2
+left join tbl_teams b2 on a2.teamid=b2.teamid
+where b2.linesid = t.linesid
+and a2.timeline < t.timeline) as rank /*分数相同,名次并列*/
+from (
+select timeline,b.linesid,a.match_id,a.teamid,b.teamname,b.teamno, u.nickname,u.mobile, a.status as valid,DATE_FORMAT(a.starttime,'%Y-%m-%d %H:%i:%s:%f') as maxtime,
                                 DATE_FORMAT(a.settime,'%Y-%m-%d %H:%i:%s:%f') as mintime,timediff(a.settime,a.starttime) as total
                                 from tbl_result a ");
                  sql.Append("left join tbl_teams b on a.teamid=b.teamid  "); 
@@ -1255,7 +1293,8 @@ namespace BLL
                 if (!string.IsNullOrEmpty(nickname))
                     sql.AppendFormat(" AND u.nickname  like '%{0}%'", nickname);
 
-                sql.Append(" group by b.teamno,b.teamname ");
+                sql.Append(@" group by b.teamno,b.teamname 
+                                ) t");
                 return db.SqlQuery1<ranking, TimeSpan?>(sql.ToString(), pageindex, p => p.total);
             }
         }

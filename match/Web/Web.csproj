@@ -147,6 +147,7 @@
     <Compile Include="Areas\Main\Controllers\PublishController.cs" />
     <Compile Include="Areas\Main\Controllers\TeamController.cs" />
     <Compile Include="Areas\Main\Models\CombineModel.cs" />
+    <Compile Include="Areas\Main\Models\ResponseModel.cs" />
     <Compile Include="Areas\Main\Models\TeamGroupModel.cs" />
     <Compile Include="Areas\Main\Models\CombineResponseModel.cs" />
     <Compile Include="Areas\Main\Models\UtilsResponseModel.cs" />

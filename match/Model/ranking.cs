@@ -12,6 +12,10 @@ namespace Model
 
         public string teamno
         { get; set; }
+        public int rank
+        { get; set; }
+        public string match_id { get; set; }
+        public string teamid { get; set; }
 
         //public string line_no
         //{ get; set; }
