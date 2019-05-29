@@ -116,9 +116,13 @@
                         @m.Pointscount
                     </td>
                    <td>
-                       @if (m.Status == 2)
+                     
+                       @foreach (var item in ViewData["Status"] as List<SelectListItem>)
                        {
-                           <span>禁用</span>
+                           if (item.Value == m.Status.ToString())
+                           {
+                               @item.Text
+                           }
                        }
                    </td>
                     <td>

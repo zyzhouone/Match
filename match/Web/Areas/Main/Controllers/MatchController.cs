@@ -42,8 +42,9 @@ namespace Web.Areas.Main.Controllers
                 {
                     lines = new MatchBll().GetLines(matchid, optLine, pageIndex.GetValueOrDefault(1));
                 }
-               
 
+                List<SelectListItem> Status = new MemberBll().GetDict(3);
+                ViewData["Status"] = Status;
 
                 if (optMatch != null)
                 {
